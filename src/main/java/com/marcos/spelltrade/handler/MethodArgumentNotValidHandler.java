@@ -1,4 +1,4 @@
-package com.marcos.spelltrade.exception;
+package com.marcos.spelltrade.handler;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

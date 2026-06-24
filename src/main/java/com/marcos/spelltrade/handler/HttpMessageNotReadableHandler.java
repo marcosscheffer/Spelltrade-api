@@ -1,4 +1,4 @@
-package com.marcos.spelltrade.exception;
+package com.marcos.spelltrade.handler;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;

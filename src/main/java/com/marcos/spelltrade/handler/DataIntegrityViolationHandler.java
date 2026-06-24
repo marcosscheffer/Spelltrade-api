@@ -1,4 +1,4 @@
-package com.marcos.spelltrade.exception;
+package com.marcos.spelltrade.handler;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -12,7 +12,7 @@ public class DataIntegrityViolationHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ApiErrorDto> dataIntegrityViolationHandler(
         DataIntegrityViolationException exception) {
-            ApiErrorDto error = new ApiErrorDto("Email is already in use.");
+            ApiErrorDto error = new ApiErrorDto(exception.getMessage());
             return ResponseEntity
                 .status(HttpStatus.CONFLICT)
                 .body(error);

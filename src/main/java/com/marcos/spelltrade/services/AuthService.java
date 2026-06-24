@@ -16,8 +16,10 @@ import com.marcos.spelltrade.dto.AuthUserDto;
 import com.marcos.spelltrade.mapper.UserMapper;
 import com.marcos.spelltrade.repository.UserRepository;
 import com.marcos.spelltrade.security.JwtService;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class AuthService {
     private final UserMapper userMapper;
     private final PasswordEncoder encoder;
@@ -25,17 +27,6 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final UserService userService;
-
-    public AuthService(UserMapper userMapper, PasswordEncoder encoder, 
-        UserRepository repository, AuthenticationManager authenticationManager, 
-        JwtService jwtService, UserService userService) {
-        this.userMapper = userMapper;
-        this.encoder = encoder;
-        this.repository = repository;
-        this.authenticationManager = authenticationManager;
-        this.jwtService = jwtService;
-        this.userService = userService;
-    }
 
     public AuthUserDto register(AuthRegisterDto dto) {
         User user = userMapper.toEntity(dto);

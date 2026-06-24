@@ -8,10 +8,13 @@ public record AuthRegisterDto(
     @NotBlank
     String name,
     @NotBlank
-    @Size(min = 8, max = 100, message = "Password must be longer than 8 characters.")
+    @Size(min = 8, max = 100)
     String password,
     @NotBlank
     @Email
-    String email
+    String email,
+    @NotBlank
+    @Size(min = 8, max=25)
+    String phone
 ) {    
 }
