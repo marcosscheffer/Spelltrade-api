@@ -1,18 +1,17 @@
 package com.marcos.spelltrade.handler;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.marcos.spelltrade.dto.common.ApiErrorDto;
+import com.marcos.spelltrade.exception.ForbiddenException;
 
 @RestControllerAdvice
-public class TokenExpiredHandler {
-    @ExceptionHandler(TokenExpiredException.class)
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public ApiErrorDto tokenExpiredHandler(TokenExpiredException exception) {
+public class ForbiddenHandler {
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ApiErrorDto> forbiddenHandler(ForbiddenException exception) {
         ApiErrorDto error = new ApiErrorDto(exception.getMessage());
-        return error;
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
     }
 }

@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.marcos.spelltrade.dto.ApiErrorDto;
+import com.marcos.spelltrade.dto.common.ApiErrorDto;
 
 @RestControllerAdvice
 public class HttpMessageNotReadableHandler {

@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.marcos.spelltrade.dto.ValidationErrorDto;
+import com.marcos.spelltrade.dto.common.ValidationErrorDto;
 
 @RestControllerAdvice
 public class MethodArgumentNotValidHandler {

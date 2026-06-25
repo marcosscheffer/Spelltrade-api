@@ -1,4 +1,4 @@
-package com.marcos.spelltrade.dto;
+package com.marcos.spelltrade.dto.storage;
 
 import jakarta.validation.constraints.NotBlank;
 

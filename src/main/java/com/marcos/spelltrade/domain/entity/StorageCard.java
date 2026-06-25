@@ -17,7 +17,7 @@ import lombok.Setter;
 )
 @Getter
 @Setter
-public class StorageCard {
+public class StorageCard extends BaseEntity {
     @EmbeddedId
     private StorageCardId id;
 
@@ -30,6 +30,6 @@ public class StorageCard {
     @MapsId("storageId")
     @JoinColumn(name = "storage_id")
     private Storage storage;
-    private int quantity;
+    private Integer quantity;
     private Boolean available;
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import com.marcos.spelltrade.dto.CloudinaryUploadResultDto;
+import com.marcos.spelltrade.dto.common.CloudinaryUploadResultDto;
 import lombok.RequiredArgsConstructor;
 
 @Service

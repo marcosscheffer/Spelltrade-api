@@ -1,4 +1,4 @@
-package com.marcos.spelltrade.dto;
+package com.marcos.spelltrade.dto.auth;
 
 public record AuthTokenDto(
     String accessToken,

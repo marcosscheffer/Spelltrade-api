@@ -1,4 +1,4 @@
-package com.marcos.spelltrade.dto;
+package com.marcos.spelltrade.dto.common;
 
 import java.util.Map;
 

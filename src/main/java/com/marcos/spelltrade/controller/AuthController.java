@@ -1,11 +1,11 @@
 package com.marcos.spelltrade.controller;
 
 import org.springframework.web.bind.annotation.RestController;
-import com.marcos.spelltrade.dto.AuthLoginDto;
-import com.marcos.spelltrade.dto.AuthRefreshDto;
-import com.marcos.spelltrade.dto.AuthRegisterDto;
-import com.marcos.spelltrade.dto.AuthTokenDto;
-import com.marcos.spelltrade.dto.AuthUserDto;
+import com.marcos.spelltrade.dto.auth.AuthLoginDto;
+import com.marcos.spelltrade.dto.auth.AuthRefreshDto;
+import com.marcos.spelltrade.dto.auth.AuthRegisterDto;
+import com.marcos.spelltrade.dto.auth.AuthTokenDto;
+import com.marcos.spelltrade.dto.auth.AuthUserDto;
 import com.marcos.spelltrade.services.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
