@@ -1,6 +1,7 @@
 package com.marcos.spelltrade.dto.card;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.marcos.spelltrade.domain.enums.RarityType;
@@ -21,7 +22,8 @@ public record CardResponseDto(
     RarityType rarity,
     String typeLine,
     SetResponseDto set,
-    CardImageResponseDto image
+    CardImageResponseDto image,
+    List<CardFaceResponseDto> cardFace
 ) {
     
 }

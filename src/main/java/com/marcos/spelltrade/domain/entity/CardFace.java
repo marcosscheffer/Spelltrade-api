@@ -1,10 +1,12 @@
 package com.marcos.spelltrade.domain.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -13,27 +15,28 @@ import lombok.Setter;
 @Entity
 @Table(
     schema = "card",
-    name = "images"
+    name = "card_faces"
 )
 @Getter
 @Setter
-public class CardImage {
+public class CardFace {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "card_id")
     private Card card;
 
-    @OneToOne
-    @JoinColumn(name = "card_face")
-    private CardFace cardFace;
     private Short faceIndex;
-    private String small;
-    private String normal;
-    private String large;
-    private String png;
-    private String borderCrop;
-    private String artCrop;
+    private String name;
+    private String manaCost;
+    private String typeLine;
+    private String oracleText;
+    private String power;
+    private String toughness;
+    private String loyalty;
+
+    @OneToOne(mappedBy = "cardFace")
+    private CardImage cardImage;
 }

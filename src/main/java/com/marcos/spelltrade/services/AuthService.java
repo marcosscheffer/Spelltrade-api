@@ -1,5 +1,6 @@
 package com.marcos.spelltrade.services;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -13,6 +14,7 @@ import com.marcos.spelltrade.dto.auth.AuthRefreshDto;
 import com.marcos.spelltrade.dto.auth.AuthRegisterDto;
 import com.marcos.spelltrade.dto.auth.AuthTokenDto;
 import com.marcos.spelltrade.dto.auth.AuthUserDto;
+import com.marcos.spelltrade.exception.BusinessException;
 import com.marcos.spelltrade.mapper.UserMapper;
 import com.marcos.spelltrade.repository.UserRepository;
 import com.marcos.spelltrade.security.JwtService;
@@ -34,7 +36,12 @@ public class AuthService {
             encoder.encode(dto.password())
         );
         user.setRole(Roles.USER);
-        repository.save(user);
+
+        try {
+            repository.save(user);
+        } catch (DataIntegrityViolationException exception) {
+            throw new BusinessException("Email already in use");
+        }
 
         return userMapper.toDto(user);
     }

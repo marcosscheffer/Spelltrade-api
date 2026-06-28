@@ -2,6 +2,7 @@ package com.marcos.spelltrade.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
@@ -36,6 +37,7 @@ public class SecurityFilterChainConfig {
                 )
 
                 .authorizeHttpRequests(auth -> auth
+                    // Endpoints of authentication
                     .requestMatchers(
                         "/auth/register",
                         "/auth/login",
@@ -43,6 +45,15 @@ public class SecurityFilterChainConfig {
                         "/error"
                     )
                     .permitAll()
+                    // Endpoints of '/storages'
+                    .requestMatchers(
+                        HttpMethod.GET,
+                        "/storages",
+                        "/storages/{id}",
+                        "/storages/{id}/cards"
+                    )
+                    .permitAll()
+
                     .requestMatchers("/admin/**")
                     .hasRole("ADMIN")
                     .anyRequest()

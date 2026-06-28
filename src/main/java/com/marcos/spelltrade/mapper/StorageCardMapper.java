@@ -8,13 +8,12 @@ import com.marcos.spelltrade.dto.storage.StorageCardResponseDto;
 
 @Mapper(
     componentModel = "spring",
-    uses = {
-        StorageMapper.class, 
+    uses = { 
         CardMapper.class
     }
 )
 public interface StorageCardMapper {
-
+    @Mapping(target = "storageId", source = "storage.id")
     StorageCardResponseDto toDto(StorageCard entity);
 
     @Mapping(target = "card", ignore = true)
