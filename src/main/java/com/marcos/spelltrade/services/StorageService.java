@@ -164,4 +164,11 @@ public class StorageService {
         StorageCardId id = new StorageCardId(cardId, storageId);
         storageCardRepository.deleteById(id);
     }
+
+    public void deleteStorage(Long id, User user) {
+        Storage storage = storageRepository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Storage not found"));
+        verifyPermissionStorage(storage, user.getId());
+        storageRepository.deleteById(id);
+    }
 }

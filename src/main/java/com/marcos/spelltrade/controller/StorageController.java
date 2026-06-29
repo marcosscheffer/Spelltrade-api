@@ -72,6 +72,14 @@ public class StorageController {
         return ResponseEntity.ok(response);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteStorage(
+        @PathVariable Long id,
+        @AuthenticationPrincipal User principal
+    ) {
+        storageService.deleteStorage(id, principal);
+    }
+
     @PutMapping("/{id}/upload-image")
     public ResponseEntity<StorageResponseDto> uploadImageStorage(
         @PathVariable Long id,
