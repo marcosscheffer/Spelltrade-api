@@ -14,7 +14,11 @@ public class CardService {
     private final CardRepository cardRepository;
     private final CardMapper cardMapper;
 
-    public Page<CardResponseDto> getCards(Pageable pageable) {
-        return cardRepository.findAllByOrderByNameAsc(pageable).map(cardMapper::toDto);
+    public Page<CardResponseDto> getCards(
+        String name,
+        Pageable pageable
+    ) {
+        return cardRepository.findByNameContainingIgnoreCase( 
+            name, pageable).map(cardMapper::toDto);
     }
 }
