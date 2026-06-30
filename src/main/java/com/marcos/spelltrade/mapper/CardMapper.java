@@ -8,7 +8,8 @@ import com.marcos.spelltrade.dto.card.CardResponseDto;
     componentModel = "spring",
     uses = {
         SetMapper.class,
-        CardFaceMapper.class
+        CardFaceMapper.class,
+        ColorIdentityMapper.class
     }
 )
 public interface CardMapper {

@@ -9,7 +9,8 @@ import com.marcos.spelltrade.dto.storage.StorageCardResponseDto;
 @Mapper(
     componentModel = "spring",
     uses = { 
-        CardMapper.class
+        CardMapper.class,
+        CardFaceMapper.class
     }
 )
 public interface StorageCardMapper {

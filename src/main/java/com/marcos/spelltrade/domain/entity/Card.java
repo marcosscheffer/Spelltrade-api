@@ -50,4 +50,7 @@ public class Card {
 
     @OneToMany(mappedBy = "card")
     private List<CardFace> cardFace;
+
+    @OneToMany(mappedBy = "card")
+    private List<ColorIdentity> colorIdentity;
 }

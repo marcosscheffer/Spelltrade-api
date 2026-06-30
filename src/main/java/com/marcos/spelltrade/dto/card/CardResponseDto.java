@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.marcos.spelltrade.domain.enums.Color;
 import com.marcos.spelltrade.domain.enums.RarityType;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -23,7 +24,8 @@ public record CardResponseDto(
     String typeLine,
     SetResponseDto set,
     CardImageResponseDto image,
-    List<CardFaceResponseDto> cardFace
+    List<CardFaceResponseDto> cardFace,
+    List<Color> colorIdentity
 ) {
     
 }
