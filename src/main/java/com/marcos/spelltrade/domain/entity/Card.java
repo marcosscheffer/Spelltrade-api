@@ -53,4 +53,7 @@ public class Card {
 
     @OneToMany(mappedBy = "card")
     private List<ColorIdentity> colorIdentity;
+
+    @OneToMany(mappedBy = "card")
+    private List<StorageCard> storageCard;
 }
