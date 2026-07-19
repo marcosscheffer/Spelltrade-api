@@ -1,13 +1,16 @@
 package com.marcos.spelltrade.services;
 
 import java.util.List;
+import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import com.marcos.spelltrade.domain.entity.Card;
 import com.marcos.spelltrade.domain.enums.Color;
 import com.marcos.spelltrade.dto.card.CardResponseDto;
 import com.marcos.spelltrade.mapper.CardMapper;
 import com.marcos.spelltrade.repository.CardRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -38,5 +41,11 @@ public class CardService {
             return cardRepository.findAllCards(name, pageable)
                 .map(cardMapper::toDto);
         }
+    }
+
+    public CardResponseDto getCard(UUID id) {
+        Card card = cardRepository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Card not found with id: " + id));
+        return cardMapper.toDto(card);
     }
 }

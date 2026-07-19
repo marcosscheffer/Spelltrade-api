@@ -6,10 +6,12 @@ import com.marcos.spelltrade.dto.card.CardResponseDto;
 import com.marcos.spelltrade.services.CardService;
 import lombok.RequiredArgsConstructor;
 import java.util.List;
+import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,5 +33,12 @@ public class CardController {
             q, colors, available, pageable);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CardResponseDto> getCard(@PathVariable UUID id) {
+        CardResponseDto response = cardService.getCard(id);
+        return ResponseEntity.ok(response);
+    }
+    
     
 }

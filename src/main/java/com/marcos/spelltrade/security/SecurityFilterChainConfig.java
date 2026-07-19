@@ -56,7 +56,8 @@ public class SecurityFilterChainConfig {
                     // Endpoints of '/cards'
                     .requestMatchers(
                         HttpMethod.GET,
-                        "/cards"
+                        "/cards",
+                        "/cards/{id}"
                     )
                     .permitAll()
 

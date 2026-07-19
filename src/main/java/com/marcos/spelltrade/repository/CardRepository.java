@@ -13,7 +13,6 @@ public interface CardRepository extends JpaRepository<Card, UUID> {
     @Query("""
             SELECT c FROM Card c
             JOIN c.storageCard sc
-            JOIN c.colorIdentity ci
             WHERE LOWER(c.name) LIKE LOWER(CONCAT('%', :name, '%'))
             AND sc.available = :available
             """)
