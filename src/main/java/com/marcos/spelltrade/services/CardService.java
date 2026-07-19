@@ -22,16 +22,20 @@ public class CardService {
         Boolean available,
         Pageable pageable
     ) {
-        
-        if (!Boolean.TRUE.equals(available)) 
-            return cardRepository.findByNameContainingIgnoreCase(name, pageable)
+        if (Boolean.TRUE.equals(available) && !colors.isEmpty()) {
+            return cardRepository.findAllCardsAvailableByColors(name, available, colors.size(), colors,  pageable)
                 .map(cardMapper::toDto);
-        else if (colors == null) {
-            return cardRepository.findAllCardsByNameAndAvailable(name, available, pageable)
+
+        } else if (Boolean.TRUE.equals(available) && colors.isEmpty()) {
+            return cardRepository.findAllCardsAvailable(name, available, pageable)
                 .map(cardMapper::toDto);
+
+        } else if (!colors.isEmpty()) {
+            return cardRepository.findAllCardsByColors(name, colors, colors.size(), pageable)
+                .map(cardMapper::toDto);
+                
         } else {
-            return cardRepository.findAllCardsByColors( 
-                name, available, colors, colors.size(), pageable)
+            return cardRepository.findAllCards(name, pageable)
                 .map(cardMapper::toDto);
         }
     }

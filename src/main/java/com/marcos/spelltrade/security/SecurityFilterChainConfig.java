@@ -53,6 +53,12 @@ public class SecurityFilterChainConfig {
                         "/storages/{id}/cards"
                     )
                     .permitAll()
+                    // Endpoints of '/cards'
+                    .requestMatchers(
+                        HttpMethod.GET,
+                        "/cards"
+                    )
+                    .permitAll()
 
                     .requestMatchers("/admin/**")
                     .hasRole("ADMIN")

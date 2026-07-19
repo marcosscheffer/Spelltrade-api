@@ -23,8 +23,8 @@ public class CardController {
     @GetMapping
     public ResponseEntity<Page<CardResponseDto>> getcards(
         @RequestParam(defaultValue = "") String q,
-        @RequestParam(required = false) List<Color> colors,
-        @RequestParam(required = false) Boolean available,
+        @RequestParam(defaultValue = "") List<Color> colors,
+        @RequestParam(defaultValue = "false") Boolean available,
         Pageable pageable
     ) {
         Page<CardResponseDto> response = cardService.getCards(

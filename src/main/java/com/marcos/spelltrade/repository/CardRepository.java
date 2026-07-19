@@ -16,31 +16,53 @@ public interface CardRepository extends JpaRepository<Card, UUID> {
             JOIN c.colorIdentity ci
             WHERE LOWER(c.name) LIKE LOWER(CONCAT('%', :name, '%'))
             AND sc.available = :available
-            AND sc.quantity > 0
-            AND ci.color IN :colors
-            GROUP BY c
-            HAVING COUNT(DISTINCT ci.color) = :size
             """)
-    Page<Card> findAllCardsByColors(
+    Page<Card> findAllCardsAvailable(
         String name, 
-        Boolean available, 
-        List<Color> colors, 
-        int size, 
+        Boolean available,
         Pageable pageable
     );
 
     @Query("""
             SELECT c FROM Card c
             JOIN c.storageCard sc
+            JOIN c.colorIdentity ci
             WHERE LOWER(c.name) LIKE LOWER(CONCAT('%', :name, '%'))
             AND sc.available = :available
-            AND sc.quantity > 0
+            AND ci.color IN :colors
+            GROUP BY c
+            HAVING COUNT(DISTINCT ci.color) = :size
             """)
-    Page<Card> findAllCardsByNameAndAvailable(
+    Page<Card> findAllCardsAvailableByColors(
         String name, 
-        Boolean available, 
+        Boolean available,
+        Integer size,
+        List<Color> colors, 
         Pageable pageable
     );
 
-    Page<Card> findByNameContainingIgnoreCase(String name, Pageable pageable);
+    @Query("""
+            SELECT c FROM Card c
+            JOIN c.colorIdentity ci
+            WHERE LOWER(c.name) LIKE LOWER(CONCAT('%', :name, '%'))
+            AND ci.color IN :colors
+            GROUP BY c
+            HAVING COUNT(DISTINCT ci.color) = :size
+            """)
+    Page<Card> findAllCardsByColors(
+        String name, 
+        List<Color> colors, 
+        Integer size,
+        Pageable pageable
+    );
+
+    @Query("""
+            SELECT c FROM Card c
+            WHERE LOWER(c.name) LIKE LOWER(CONCAT('%', :name, '%'))
+            """)
+    Page<Card> findAllCards(
+        String name, 
+        Pageable pageable
+    );
+
 }
