@@ -15,6 +15,7 @@ import com.marcos.spelltrade.dto.storage.StorageCardResponseDto;
 )
 public interface StorageCardMapper {
     @Mapping(target = "storageId", source = "storage.id")
+    @Mapping(target = "cardFace", source = "card.cardFace")
     StorageCardResponseDto toDto(StorageCard entity);
 
     @Mapping(target = "card", ignore = true)

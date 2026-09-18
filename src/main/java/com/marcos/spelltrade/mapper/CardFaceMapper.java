@@ -11,7 +11,6 @@ import com.marcos.spelltrade.dto.card.CardFaceResponseDto;
     }
 )
 public interface CardFaceMapper {
-
     CardFaceResponseDto toDto(CardFace entity);
     
 }

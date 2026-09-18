@@ -19,6 +19,14 @@ public class CardService {
     private final CardRepository cardRepository;
     private final CardMapper cardMapper;
 
+    public Card getCardById(UUID id) {
+        return cardRepository.findById(id)
+            .orElseThrow(
+                () -> new EntityNotFoundException("Card not found with id: " + id)
+            );
+    }
+
+
     public Page<CardResponseDto> getCards(
         String name,
         List<Color> colors,
@@ -44,8 +52,8 @@ public class CardService {
     }
 
     public CardResponseDto getCard(UUID id) {
-        Card card = cardRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Card not found with id: " + id));
+        Card card = getCardById(id);
         return cardMapper.toDto(card);
     }
+
 }

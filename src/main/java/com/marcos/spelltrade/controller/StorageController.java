@@ -6,9 +6,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.marcos.spelltrade.domain.entity.Image;
 import com.marcos.spelltrade.domain.entity.User;
 import com.marcos.spelltrade.dto.common.CloudinaryUploadResultDto;
-import com.marcos.spelltrade.dto.storage.StorageCardPutRequestDto;
-import com.marcos.spelltrade.dto.storage.StorageCardRequestDto;
-import com.marcos.spelltrade.dto.storage.StorageCardResponseDto;
 import com.marcos.spelltrade.dto.storage.StorageRequestDto;
 import com.marcos.spelltrade.dto.storage.StorageResponseDto;
 import com.marcos.spelltrade.services.CloudinaryService;
@@ -17,7 +14,6 @@ import com.marcos.spelltrade.services.StorageService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import java.net.URI;
-import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -30,8 +26,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-
-
 
 
 @RestController
@@ -93,46 +87,5 @@ public class StorageController {
 
         return ResponseEntity.ok(response);
     }
-
-    @GetMapping("/{id}/cards")
-    public ResponseEntity<Page<StorageCardResponseDto>> getCardsStorage(
-        Pageable pageable,
-        @RequestParam(defaultValue = "") String q,
-        @PathVariable Long id,
-        @AuthenticationPrincipal User principal
-    ) {
-        Page<StorageCardResponseDto> response = storageService.getCardsStorage(id, principal, q, pageable);
-        return ResponseEntity.ok(response);
-    }
-
-    @PostMapping("/{id}/cards")
-    public ResponseEntity<StorageCardResponseDto> newCard (
-        @PathVariable Long id,
-        @RequestBody @Valid StorageCardRequestDto dto,
-        @AuthenticationPrincipal User principal,
-        UriComponentsBuilder uri
-    ) {
-        StorageCardResponseDto card = storageService.newCard(id, dto, principal.getId());
-        return ResponseEntity.ok(card);
-    }
-
-    @PutMapping("/{storageId}/cards/{cardId}")
-    public ResponseEntity<StorageCardResponseDto> changeStorageCard(
-        @PathVariable Long storageId, 
-        @PathVariable UUID cardId, 
-        @RequestBody StorageCardPutRequestDto dto,
-        @AuthenticationPrincipal User principal
-    ) {
-        StorageCardResponseDto response = storageService.changeStorageCard(storageId, cardId, dto, principal);
-        return ResponseEntity.ok(response);
-    }
-
-    @DeleteMapping("/{storageId}/cards/{cardId}")
-    public void deleteCard(
-        @PathVariable Long storageId,
-        @PathVariable UUID cardId,
-        @AuthenticationPrincipal User principal
-    ) {
-        storageService.deleteCard(storageId, cardId, principal);
-    }
+    
 }
