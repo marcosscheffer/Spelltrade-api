@@ -11,7 +11,6 @@ import com.marcos.spelltrade.dto.storage.StorageRequestDto;
 import com.marcos.spelltrade.dto.storage.StorageResponseDto;
 import com.marcos.spelltrade.exception.ForbiddenException;
 import com.marcos.spelltrade.mapper.StorageMapper;
-import com.marcos.spelltrade.repository.EmployeeRepository;
 import com.marcos.spelltrade.repository.StorageRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +21,9 @@ public class StorageService {
     private final StorageRepository storageRepository;
     private final StorageMapper storageMapper;
     private final UserService userService;
-    private final EmployeeRepository employeeRepository;
 
     public void verifyPermissionStorage(Storage storage, Long userId) {
-        // Verify if user is owner or employee of storage for modify
-        if (!storage.getUser().getId().equals(userId) 
-            && !employeeRepository.existsByUserIdAndStorageId(userId, storage.getId())) {
+        if (!storage.getUser().getId().equals(userId)) {
                 throw new ForbiddenException("No permission to change this storage.");
         }
     }
@@ -42,6 +38,14 @@ public class StorageService {
     public Page<StorageResponseDto> getStorages(String name, Pageable pageable) {
         Page<StorageResponseDto> response = storageRepository
             .findByStatusAndNameContainingIgnoreCase(Status.PUBLIC, name, pageable)
+            .map(storageMapper::toDto);
+        
+        return response;
+    }
+
+    public Page<StorageResponseDto> getMyStorages(String name, Long userId, Pageable pageable) {
+        Page<StorageResponseDto> response = storageRepository
+            .findByUserIdAndNameContainingIgnoreCase(userId, name, pageable)
             .map(storageMapper::toDto);
         
         return response;

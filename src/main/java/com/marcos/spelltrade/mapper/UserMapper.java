@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import com.marcos.spelltrade.domain.entity.User;
 import com.marcos.spelltrade.dto.auth.AuthRegisterDto;
-import com.marcos.spelltrade.dto.auth.AuthUserDto;
+import com.marcos.spelltrade.dto.user.UserResponseDto;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
@@ -17,5 +17,5 @@ public interface UserMapper {
     @Mapping(target = "password", ignore = true)
     User toEntity(AuthRegisterDto dto);
 
-    AuthUserDto toDto(User entity);
+    UserResponseDto toDto(User entity);
 }

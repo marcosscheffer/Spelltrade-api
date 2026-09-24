@@ -26,7 +26,6 @@ public class CardService {
             );
     }
 
-
     public Page<CardResponseDto> getCards(
         String name,
         List<Color> colors,

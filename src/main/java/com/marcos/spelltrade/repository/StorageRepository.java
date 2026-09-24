@@ -9,4 +9,6 @@ import com.marcos.spelltrade.domain.enums.Status;
 public interface StorageRepository extends JpaRepository<Storage, Long> {
     Page<Storage> findByStatusAndNameContainingIgnoreCase(
         Status status, String name, Pageable pageable);
+
+    Page<Storage> findByUserIdAndNameContainingIgnoreCase(Long userId, String name, Pageable pageable);
 }

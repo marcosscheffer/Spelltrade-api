@@ -1,6 +1,7 @@
 package com.marcos.spelltrade.domain.entity;
 
 import java.time.Instant;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import jakarta.persistence.Column;

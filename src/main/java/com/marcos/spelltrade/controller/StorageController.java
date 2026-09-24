@@ -57,6 +57,16 @@ public class StorageController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<Page<StorageResponseDto>> getMyStorages(
+        @AuthenticationPrincipal User principal,
+        @RequestParam(defaultValue = "") String q,
+        Pageable pageable
+    ) {
+        Page<StorageResponseDto> response = storageService.getMyStorages(q, principal.getId(), pageable);
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<StorageResponseDto> getStorage(
         @PathVariable Long id,

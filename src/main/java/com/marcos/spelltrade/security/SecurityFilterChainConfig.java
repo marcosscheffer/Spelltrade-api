@@ -46,6 +46,7 @@ public class SecurityFilterChainConfig {
                     )
                     .permitAll()
                     // Endpoints of '/storages'
+                    .requestMatchers("/storages/me").authenticated()
                     .requestMatchers(
                         HttpMethod.GET,
                         "/storages",
@@ -53,6 +54,7 @@ public class SecurityFilterChainConfig {
                         "/storages/{id}/cards"
                     )
                     .permitAll()
+                    
                     // Endpoints of '/cards'
                     .requestMatchers(
                         HttpMethod.GET,

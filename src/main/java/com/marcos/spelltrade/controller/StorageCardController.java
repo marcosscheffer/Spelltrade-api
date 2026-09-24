@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.marcos.spelltrade.domain.entity.User;
-import com.marcos.spelltrade.dto.storage.StorageCardPutRequestDto;
 import com.marcos.spelltrade.dto.storage.StorageCardRequestDto;
 import com.marcos.spelltrade.dto.storage.StorageCardResponseDto;
 import com.marcos.spelltrade.services.StorageCardService;
@@ -58,7 +57,7 @@ public class StorageCardController {
     public ResponseEntity<StorageCardResponseDto> changeStorageCard(
         @PathVariable Long storageId, 
         @PathVariable UUID cardId, 
-        @RequestBody StorageCardPutRequestDto dto,
+        @RequestBody StorageCardRequestDto dto,
         @AuthenticationPrincipal User principal
     ) {
         StorageCardResponseDto response = storageCardService.changeStorageCard(storageId, cardId, dto, principal);

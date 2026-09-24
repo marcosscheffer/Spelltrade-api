@@ -13,7 +13,6 @@ import com.marcos.spelltrade.domain.entity.StorageCard;
 import com.marcos.spelltrade.domain.entity.StorageCardId;
 import com.marcos.spelltrade.domain.entity.User;
 import com.marcos.spelltrade.domain.enums.Status;
-import com.marcos.spelltrade.dto.storage.StorageCardPutRequestDto;
 import com.marcos.spelltrade.dto.storage.StorageCardRequestDto;
 import com.marcos.spelltrade.dto.storage.StorageCardResponseDto;
 import com.marcos.spelltrade.exception.BusinessException;
@@ -88,7 +87,7 @@ public class StorageCardService {
     public StorageCardResponseDto changeStorageCard(
         Long storageId, 
         UUID cardId,
-        StorageCardPutRequestDto dto, 
+        StorageCardRequestDto dto, 
         User user
     ) {
             Storage storage = storageService.getStorageById(storageId);

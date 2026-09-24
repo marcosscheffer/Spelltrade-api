@@ -13,7 +13,7 @@ import com.marcos.spelltrade.dto.auth.AuthLoginDto;
 import com.marcos.spelltrade.dto.auth.AuthRefreshDto;
 import com.marcos.spelltrade.dto.auth.AuthRegisterDto;
 import com.marcos.spelltrade.dto.auth.AuthTokenDto;
-import com.marcos.spelltrade.dto.auth.AuthUserDto;
+import com.marcos.spelltrade.dto.user.UserResponseDto;
 import com.marcos.spelltrade.exception.BusinessException;
 import com.marcos.spelltrade.mapper.UserMapper;
 import com.marcos.spelltrade.repository.UserRepository;
@@ -30,7 +30,7 @@ public class AuthService {
     private final JwtService jwtService;
     private final UserService userService;
 
-    public AuthUserDto register(AuthRegisterDto dto) {
+    public UserResponseDto register(AuthRegisterDto dto) {
         User user = userMapper.toEntity(dto);
         user.setPassword(
             encoder.encode(dto.password())

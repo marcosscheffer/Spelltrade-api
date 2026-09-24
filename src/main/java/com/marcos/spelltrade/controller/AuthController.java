@@ -5,7 +5,7 @@ import com.marcos.spelltrade.dto.auth.AuthLoginDto;
 import com.marcos.spelltrade.dto.auth.AuthRefreshDto;
 import com.marcos.spelltrade.dto.auth.AuthRegisterDto;
 import com.marcos.spelltrade.dto.auth.AuthTokenDto;
-import com.marcos.spelltrade.dto.auth.AuthUserDto;
+import com.marcos.spelltrade.dto.user.UserResponseDto;
 import com.marcos.spelltrade.services.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +29,8 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody @Valid AuthRegisterDto dto) {
-        AuthUserDto user = authService.register(dto);
+    public ResponseEntity<UserResponseDto> register(@RequestBody @Valid AuthRegisterDto dto) {
+        UserResponseDto user = authService.register(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
